@@ -1,0 +1,103 @@
+<form class="emp-form" #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)" [ngFormOptions]="{ updateOn: 'submit' }">
+    <input type="hidden" name="EmployeeID" #EmployeeID="ngModel" [(ngModel)]="employeeService.selectedEmployee.EmployeeID">
+        
+    <div class="form-row">
+        <div class="form-group col-sm-4" align="right">
+            <label>Employee ID:</label>
+        </div>
+        <div class="form-group col-sm-4">
+            <input class="form-control" name="EmployeeID" #EmployeeID="ngModel" [(ngModel)]="employeeService.selectedEmployee.EmployeeID"
+                   placeholder="Employee ID" required pattern="^[a-zA-Z0-9]{8}$">
+            <div class="validation-error" *ngIf="submitted && EmployeeID.errors?.required">This EmployeeID is Required.</div>
+            <div *ngIf="EmployeeID.invalid && EmployeeID.touched" class="validation-error">This EmployeeID should be 8 alphanumeric characters</div>
+        </div>
+     </div>
+    <div class="form-row">
+        <div class="form-group col-sm-4" align="right">
+            <label>First Name:</label>
+        </div>
+        <div class="form-group col-sm-4">
+            <input class="form-control" name="FirstName" #FirstName="ngModel" [(ngModel)]="employeeService.selectedEmployee.FirstName"
+                   placeholder="First Name" required pattern="[a-zA-Z ]*">
+            <div class="validation-error" *ngIf="submitted && FirstName.errors?.required">This FirstName is Required.</div>
+            <div *ngIf="FirstName.invalid && FirstName.touched" class="validation-error">This FirstName should only be alphabets</div>
+        </div>
+        </div>
+    <div class="form-row">
+        <div class="form-group col-sm-4" align="right">
+            <label>Last Name:</label>
+        </div>
+        <div class="form-group col-sm-4">
+            <input class="form-control" name="LastName" #LastName="ngModel" [(ngModel)]="employeeService.selectedEmployee.LastName" placeholder="Last Name"
+                   required pattern="[a-zA-Z ]*">
+            <div class="validation-error" *ngIf="submitted && LastName.errors?.required">This LastName is Required.</div>
+            <div *ngIf="LastName.invalid && LastName.touched" class="validation-error">This LastName should only be alphabets</div>
+        </div>
+        </div>
+    <div class="form-row">
+        <div class="form-group col-sm-4" align="right">
+            <label>Department:</label>
+        </div>
+        <div class="form-group col-sm-4">
+            <input class="form-control" name="department" #department="ngModel" [(ngModel)]="employeeService.selectedEmployee.department" placeholder="Department"
+                   required pattern="^[a-zA-Z0-9]{7}$">
+            <div class="validation-error" *ngIf="submitted && department.errors?.required">This department is Required.</div>
+            <div *ngIf="department.invalid && department.touched" class="validation-error">This department should be 7 alphanumeric characters</div>
+        </div>
+        </div>
+    <div class="form-row">
+        <div class="form-group col-sm-4" align="right">
+            <label>Date of Birth:</label>
+        </div>
+        <div class="form-group col-sm-4">
+            <input class="form-control" name="dateOfBirth" #dateOfBirth="ngModel" [(ngModel)]="employeeService.selectedEmployee.dateOfBirth" placeholder="Date Of Birth"
+                   required bsDatepicker [maxDate]="maxDate">
+            <div class="validation-error" *ngIf="submitted && dateOfBirth.errors?.required">This dateOfBirth is Required.</div>
+            <div *ngIf="dateOfBirth.invalid && dateOfBirth.touched" class="validation-error">This dateOfBirth is Invalid.</div>
+        </div>
+        </div>
+    <div class="form-row">
+        <div class="form-group col-sm-4" align="right">
+            <label>Mobile Number:</label>
+        </div>
+        <div class="form-group col-sm-4">
+            <input class="form-control" name="mobileNumber" #mobileNumber="ngModel" [(ngModel)]="employeeService.selectedEmployee.mobileNumber" placeholder="Mobile Number"
+                   required pattern="^\d{10}$">
+            <div class="validation-error" *ngIf="submitted && mobileNumber.errors?.required">This mobileNumber is Required.</div>
+            <div *ngIf="mobileNumber.invalid && mobileNumber.touched" class="validation-error">This mobileNumber should be number of length 10</div>
+        </div>
+        </div>
+    <div class="form-row">
+        <div class="form-group col-sm-4" align="right">
+            <label>Address:</label>
+        </div>
+        <div class="form-group col-sm-4">
+            <input class="form-control" name="addressField" #addressField="ngModel" [(ngModel)]="employeeService.selectedEmployee.addressField" placeholder="Address Field">
+            <div class="validation-error" *ngIf="addressField.invalid && addressField.touched">This addressField is InvAlid.</div>
+        </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4"></div>
+                <div class="form-group col-md-4">
+                    <!--<button routerLink="/sidekicks">Go to sidekicks</button> [disabled]="!employeeForm.valid"-->
+                    <button type="submit" class="btn btn-lg btn-block btn-info">
+                        <i class="fa fa-floppy-o"></i> Submit
+                    </button>
+                </div>
+            </div>
+    <div class="form-row">
+        <div class="form-group col-md-4"></div>
+        <div class="form-group col-md-4">
+            <button class="btn btn-lg btn-block btn-secondary" type="button" routerLink="/EmployeeList">
+                <i class="fa fa-repeat"></i> Go To List
+            </button>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4"></div>
+        <div class="form-group col-md-4">
+            {{message}}
+        </div>
+    </div>
+</form>
